@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>計算式更新</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+</head>
+<body>
+	<header>
+		<div class="container">
+			<h1 class="text-center text-white bg-primary py-3 mt-3">計算式更新</h1>
+		</div>
+	</header>
+	<main>
+		<div class="container">
+		<div class="mx-auto" style="width:500px;">
+			<form action="/edit" method="post" th:object="${formModel}" class="form-horizontal">
+				<input type="hidden" th:field="*{dateId}">
+				<div class="form-group has-primary form-inline">
+					<label for="dateId" class="col-sm-4 control-label">日付ID</label>
+					<input type="text" class="col-sm-6 form-control" disabled th:field="*{dateId}" placeholder="Y01">
+				</div>
+				<div class="form-group has-primary form-inline">
+					<label for="dateName" class="col-sm-4 control-label">日付名</label>
+					<input type="text" class="col-sm-6 form-control" th:field="*{dateName}" placeholder="翌年">
+				</div>
+				<div class="form-group has-primary form-inline">
+					<label for="calcYear" class="col-sm-4 control-label">加減値(年)</label>
+					<input type="text" class="col-sm-6 form-control" th:field="*{calcYear}" placeholder="0">
+				</div>
+				<div class="form-group has-primary form-inline">
+					<label for="calcMonth" class="col-sm-4 control-label">加減値(月)</label>
+					<input type="text" class="col-sm-6 form-control" th:field="*{calcMonth}" placeholder="0">
+				</div>
+				<div class="form-group has-primary form-inline">
+					<label for="calcDay" class="col-sm-4 control-label">加減値(日)</label>
+					<input type="text" class="col-sm-6 form-control" th:field="*{calcDay}" placeholder="0">
+				</div>
+				<div class="mx-auto mx-5 my-5" style="width: 400px;">
+					<input type="submit" value="更新" class="btn btn-primary col-sm-2">
+					<a href="/" class="btn btn-primary mx-5">戻る</a>
+				</div>
+			</form>
+		</div>
+		</div>
+	</main>
+</body>
+</html>
