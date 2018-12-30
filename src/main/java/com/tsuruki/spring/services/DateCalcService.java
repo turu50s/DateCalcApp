@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,8 +45,8 @@ public class DateCalcService {
 		return list;
 	}
 	
-	public Optional<DateCalc> find(String dateid) {
-		Optional<DateCalc> dateCalcData = repository.findById((String)dateid);
+	public DateCalc find(String dateid) {
+		DateCalc dateCalcData = repository.findByDateId((String)dateid);
 		return dateCalcData;
 	}
 	

@@ -51,7 +51,7 @@ public class DateCalculation {
 	@RequestMapping(value="/edit/{dateid}", method=RequestMethod.GET)
 	public ModelAndView edit(@PathVariable String dateid, @ModelAttribute("formModel") DateCalc datecalc, ModelAndView mav) {
 		mav.setViewName("edit");
-		mav.addObject("formModel", service.find(dateid).get());
+		mav.addObject("formModel", service.find(dateid));
 		return mav;
 	}
 	
