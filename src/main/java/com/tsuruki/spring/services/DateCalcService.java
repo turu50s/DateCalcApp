@@ -33,9 +33,9 @@ public class DateCalcService {
 		return listTo;
 	}
 	
-	public String calculate(String str, DateCalc dateCalc) {
+	public String calculate(String baseDate, DateCalc dateCalc) {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuuMMdd");
-		LocalDate dateStr = LocalDate.parse(str,formatter);
+		LocalDate dateStr = LocalDate.parse(baseDate,formatter);
 		LocalDate calc = dateStr.plusYears(dateCalc.getCalcYear()).plusMonths(dateCalc.getCalcMonth()).plusDays(dateCalc.getCalcDay());
 		return calc.format(formatter);
 	}
