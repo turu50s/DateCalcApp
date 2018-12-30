@@ -19,12 +19,11 @@ public class DateCalcService {
 	@Autowired
 	DateCalcRepository repository;
 	
-	public List<DateResult> calculate(String str, List<DateCalc> listFrom) {
-		LocalDate result;
-		LocalDate dateStr = LocalDate.parse(str,DateTimeFormatter.ofPattern("uuuuMMdd"));
+	public List<DateResult> convert(String str, List<DateCalc> listFrom) {
+		String result;
 		List<DateResult> listTo = new ArrayList<DateResult>();
 		for (DateCalc obj : listFrom) {
-			result = dateStr.plusYears(obj.getCalcYear()).plusMonths(obj.getCalcMonth()).plusDays(obj.getCalcDay());
+			result = calculate(str, obj);
 			listTo.add(new DateResult(
 					obj.getDateId(),
 					obj.getDateName(),
@@ -34,6 +33,14 @@ public class DateCalcService {
 					result));
 		}
 		return listTo;
+	}
+	
+	public String calculate(String str, DateCalc obj) {
+		LocalDate calc;
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuuMMdd");
+		LocalDate dateStr = LocalDate.parse(str,formatter);
+		calc = dateStr.plusYears(obj.getCalcYear()).plusMonths(obj.getCalcMonth()).plusDays(obj.getCalcDay());
+		return calc.format(formatter);
 	}
 	
 	public List<DateCalc> search() {

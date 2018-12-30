@@ -30,7 +30,7 @@ public class DateCalculation {
 	public ModelAndView send(@RequestParam("reference")String str, ModelAndView mav) {
 		mav.setViewName("index");
 		List<DateCalc> list = service.search();
-		mav.addObject("data", service.calculate(str, list));
+		mav.addObject("data", service.convert(str, list));
 		mav.addObject("value", str);
 		return mav;
 	}
