@@ -27,11 +27,11 @@ public class DateCalculation {
 	}
 
 	@RequestMapping(value="/", method=RequestMethod.POST)
-	public ModelAndView send(@RequestParam("reference")String str, ModelAndView mav) {
+	public ModelAndView dateCalcOutput(@RequestParam("base")String baseDate, ModelAndView mav) {
 		mav.setViewName("index");
 		List<DateCalc> list = service.search();
-		mav.addObject("data", service.convert(str, list));
-		mav.addObject("value", str);
+		mav.addObject("dateResult", service.convert(baseDate, list));
+		mav.addObject("dateValue", baseDate);
 		return mav;
 	}
 	
@@ -51,7 +51,7 @@ public class DateCalculation {
 	@RequestMapping(value="/edit/{dateid}", method=RequestMethod.GET)
 	public ModelAndView edit(@PathVariable String dateid, @ModelAttribute("formModel") DateCalc datecalc, ModelAndView mav) {
 		mav.setViewName("edit");
-		mav.addObject("formModel", service.find(dateid).get());
+		mav.addObject("formModel", service.find(dateid));
 		return mav;
 	}
 	

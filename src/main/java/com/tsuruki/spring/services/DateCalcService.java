@@ -19,27 +19,25 @@ public class DateCalcService {
 	@Autowired
 	DateCalcRepository repository;
 	
-	public List<DateResult> convert(String str, List<DateCalc> listFrom) {
-		String result;
+	public List<DateResult> convert(String baseDate, List<DateCalc> listFrom) {
 		List<DateResult> listTo = new ArrayList<DateResult>();
-		for (DateCalc obj : listFrom) {
-			result = calculate(str, obj);
+		for (DateCalc dateCalc : listFrom) {
+			String result = calculate(baseDate, dateCalc);
 			listTo.add(new DateResult(
-					obj.getDateId(),
-					obj.getDateName(),
-					obj.getCalcYear(),
-					obj.getCalcMonth(),
-					obj.getCalcDay(),
+					dateCalc.getDateId(),
+					dateCalc.getDateName(),
+					dateCalc.getCalcYear(),
+					dateCalc.getCalcMonth(),
+					dateCalc.getCalcDay(),
 					result));
 		}
 		return listTo;
 	}
 	
-	public String calculate(String str, DateCalc obj) {
-		LocalDate calc;
+	public String calculate(String str, DateCalc dateCalc) {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuuMMdd");
 		LocalDate dateStr = LocalDate.parse(str,formatter);
-		calc = dateStr.plusYears(obj.getCalcYear()).plusMonths(obj.getCalcMonth()).plusDays(obj.getCalcDay());
+		LocalDate calc = dateStr.plusYears(dateCalc.getCalcYear()).plusMonths(dateCalc.getCalcMonth()).plusDays(dateCalc.getCalcDay());
 		return calc.format(formatter);
 	}
 	
@@ -48,17 +46,17 @@ public class DateCalcService {
 		return list;
 	}
 	
-	public Optional<DateCalc>find(String dateid) {
-		Optional<DateCalc> data = repository.findById((String)dateid);
-		return data;
+	public Optional<DateCalc> find(String dateid) {
+		Optional<DateCalc> dateCalcData = repository.findById((String)dateid);
+		return dateCalcData;
 	}
 	
-	@Transactional(readOnly=false)
+	@Transactional
 	public void save(DateCalc datecalc) {
 		repository.saveAndFlush(datecalc);
 	}
 	
-	@Transactional(readOnly=false)
+	@Transactional
 	public void delete(String dateid) {
 		repository.deleteById(dateid);
 	}

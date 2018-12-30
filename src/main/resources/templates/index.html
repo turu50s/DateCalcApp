@@ -12,8 +12,8 @@
 			<h1 class="text-center text-white bg-primary py-3 mt-3">日付計算</h1>
 			<form action="/" method="post" class="form-horizontal form-inline my-3">
 				<div class="form-group has-primary">
-						<label for="reference" class="col-sm-4 control-label">基準日：</label>
-					<input type="text" class="col-sm-6 form-control" name="reference" id="reference" th:value="${value}" placeholder="20181224">
+						<label for="base" class="col-sm-4 control-label">基準日：</label>
+					<input type="text" class="col-sm-6 form-control" name="base" id="base" th:value="${dateValue}" placeholder="20181224">
 				</div>
 				<input type="submit" value="計算" class="btn btn-primary">
 				<a th:href="register" class="btn btn-primary mx-5 col-sm-2">新規登録</a>
@@ -27,7 +27,7 @@
 					<tr class="text-center"><th>No.</th><th>日付ID</th><th>日付名</th><th>計算結果</th><th>計算式(年月日)</th></tr>
 				</thead>
 				<tbody>
-					<tr th:each="obj, stat : ${data}" th:object="${obj}" class="text-center">					
+					<tr th:each="dateForm, stat : ${dateResult}" th:object="${dateForm}" class="text-center">					
 						<td th:text="${stat.count}"></td>
 						<td th:text="*{id}"></td>
 						<td th:text="*{name}"></td>

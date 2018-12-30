@@ -20,13 +20,16 @@ public class DateCalc {
 	@NotEmpty
 	private String dateName;
 		
-	@Column(length = 2, nullable = false)
+	@Column(length = 2)
+	@NotNull
 	private int calcYear;
 		
-	@Column(length = 3, nullable = false)
+	@Column(length = 3)
+	@NotNull
 	private int calcMonth;
 		
-	@Column(length = 4, nullable = false)
+	@Column(length = 4)
+	@NotNull
 	private int calcDay;
 		
 	public String getDateId() {
