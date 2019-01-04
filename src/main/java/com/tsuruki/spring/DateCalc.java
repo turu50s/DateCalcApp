@@ -13,23 +13,23 @@ public class DateCalc {
 	
 	@Id
 	@Column(length = 6)
-	@NotNull
+	@NotEmpty(message="未入力です")
 	private String dateId;
 		
 	@Column(length = 32)
-	@NotEmpty
+	@NotEmpty(message="未入力です")
 	private String dateName;
 		
 	@Column(length = 2)
-	@NotNull
+	@NotNull(message="未入力です")
 	private int calcYear;
 		
 	@Column(length = 3)
-	@NotNull
+	@NotNull(message="未入力です")
 	private int calcMonth;
 		
 	@Column(length = 4)
-	@NotNull
+	@NotNull(message="未入力です")
 	private int calcDay;
 		
 	public String getDateId() {

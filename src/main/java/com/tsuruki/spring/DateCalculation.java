@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,9 +31,13 @@ public class DateCalculation {
 	@RequestMapping(value="/", method=RequestMethod.POST)
 	public ModelAndView dateCalcOutput(@RequestParam("base")String baseDate, ModelAndView mav) {
 		mav.setViewName("index");
-		List<DateCalc> list = service.search();
-		mav.addObject("dateResult", service.convert(baseDate, list));
 		mav.addObject("dateValue", baseDate);
+		try {			
+			List<DateCalc> list = service.search();
+			mav.addObject("dateResult", service.convert(baseDate, list));
+		} catch (Exception e) {
+			mav.addObject("msg", "入力項目に間違いがあります。");
+		}
 		return mav;
 	}
 	
@@ -42,24 +48,49 @@ public class DateCalculation {
 	}
 	
 	@RequestMapping(value="/register", method=RequestMethod.POST)
-	public ModelAndView create(@RequestParam("dateId")String dateid, @ModelAttribute("formModel") DateCalc datecalc, ModelAndView mav) {
-		datecalc.setDateId(dateid);
-		service.save(datecalc);
-		return new ModelAndView("redirect:/");
+	public ModelAndView create(@RequestParam("dateId")String dateid,
+						@ModelAttribute("formModel") @Validated DateCalc datecalc,
+						BindingResult errors,
+						ModelAndView mav) {
+		
+		ModelAndView response = null;
+		
+		if (!errors.hasErrors()) {			
+			datecalc.setDateId(dateid);
+			service.save(datecalc);
+			response =  new ModelAndView("redirect:/");
+		} else {
+			mav.setViewName("register");
+			response = mav;
+		}
+		return response;
 	}
 	
 	@RequestMapping(value="/edit/{dateid}", method=RequestMethod.GET)
-	public ModelAndView edit(@PathVariable String dateid, @ModelAttribute("formModel") DateCalc datecalc, ModelAndView mav) {
+	public ModelAndView edit(@PathVariable String dateid,
+							@ModelAttribute("formModel") DateCalc datecalc,
+							ModelAndView mav) {
 		mav.setViewName("edit");
 		mav.addObject("formModel", service.find(dateid));
 		return mav;
 	}
 	
 	@RequestMapping(value="/edit",method=RequestMethod.POST)
-	public ModelAndView update(@RequestParam("dateId")String dateid, @ModelAttribute DateCalc datecalc, ModelAndView mav) {
-		datecalc.setDateId(dateid);
-		service.save(datecalc);
-		return new ModelAndView("redirect:/");
+	public ModelAndView update(@RequestParam("dateId")String dateid,
+							@ModelAttribute("formModel") @Validated DateCalc datecalc,
+							BindingResult errors,
+							ModelAndView mav) {
+		ModelAndView response = null;
+		
+		if (!errors.hasErrors()) {			
+			datecalc.setDateId(dateid);
+			service.save(datecalc);
+			response =  new ModelAndView("redirect:/");
+		} else {
+			mav.setViewName("edit");
+			response = mav;
+		}
+		return response;
 	}
 	
 	@RequestMapping(value="/{dateid}", method=RequestMethod.POST)

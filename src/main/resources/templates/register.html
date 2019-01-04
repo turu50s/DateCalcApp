@@ -17,24 +17,34 @@
 		<div class="mx-auto" style="width:500px;">
 			<form action="/register" method="post" th:object="${formModel}" class="form-horizontal">
 				<div class="form-group has-primary form-inline">
-					<label for="reference" class="col-sm-4 control-label">日付ID</label>
+					<label for="dateId" class="col-sm-4 control-label">日付ID</label>
 					<input type="text" class="col-sm-6 form-control" th:field="*{dateId}" placeholder="Y01">
+					<span th:if="${#fields.hasErrors('dateId')}" th:errors="*{dateId}" class="text-danger">
+					</span>
 				</div>
 				<div class="form-group has-primary form-inline">
-					<label for="reference" class="col-sm-4 control-label">日付名</label>
+					<label for="dateName" class="col-sm-4 control-label">日付名</label>
 					<input type="text" class="col-sm-6 form-control" th:field="*{dateName}" placeholder="翌年">
+					<span th:if="${#fields.hasErrors('dateName')}" th:errors="*{dateName}" class="text-danger">
+					</span>
 				</div>
 				<div class="form-group has-primary form-inline">
-					<label for="reference" class="col-sm-4 control-label">加減値(年)</label>
+					<label for="calcYear" class="col-sm-4 control-label">加減値(年)</label>
 					<input type="text" class="col-sm-6 form-control" th:field="*{calcYear}" placeholder="0">
+					<span th:if="${#fields.hasErrors('calcYear')}" th:errors="*{calcYear}" class="text-danger">
+					</span>
 				</div>
 				<div class="form-group has-primary form-inline">
-					<label for="reference" class="col-sm-4 control-label">加減値(月)</label>
+					<label for="calcMonth" class="col-sm-4 control-label">加減値(月)</label>
 					<input type="text" class="col-sm-6 form-control" th:field="*{calcMonth}" placeholder="0">
+					<span th:if="${#fields.hasErrors('calcMonth')}" th:errors="*{calcMonth}" class="text-danger">
+					</span>
 				</div>
 				<div class="form-group has-primary form-inline">
-					<label for="reference" class="col-sm-4 control-label">加減値(日)</label>
+					<label for="calcDay" class="col-sm-4 control-label">加減値(日)</label>
 					<input type="text" class="col-sm-6 form-control" th:field="*{calcDay}" placeholder="0">
+					<span th:if="${#fields.hasErrors('calcDay')}" th:errors="*{calcDay}" class="text-danger">
+					</span>
 				</div>
 				<div class="mx-auto mx-5 my-5" style="width: 400px;">
 					<input type="submit" value="登録" class="btn btn-primary col-sm-2">
