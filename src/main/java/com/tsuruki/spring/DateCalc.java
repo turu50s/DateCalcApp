@@ -12,23 +12,23 @@ import javax.validation.constraints.NotNull;
 public class DateCalc {
 	
 	@Id
-	@Column(length = 6)
+	@Column(name = "dateid", length = 6)
 	@NotEmpty(message="未入力です")
 	private String dateId;
 		
-	@Column(length = 32)
+	@Column(name = "datename", length = 32)
 	@NotEmpty(message="未入力です")
 	private String dateName;
 		
-	@Column(length = 2)
+	@Column(name = "calcyear", length = 2)
 	@NotNull(message="未入力です")
 	private int calcYear;
 		
-	@Column(length = 3)
+	@Column(name = "calcmonth", length = 3)
 	@NotNull(message="未入力です")
 	private int calcMonth;
 		
-	@Column(length = 4)
+	@Column(name = "calcday", length = 4)
 	@NotNull(message="未入力です")
 	private int calcDay;
 		

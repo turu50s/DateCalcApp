@@ -1,6 +1,5 @@
 package com.tsuruki.spring.view;
 
-import static com.codeborne.selenide.Condition.visible;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Before;
@@ -16,16 +15,15 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.codeborne.selenide.Configuration;
 import com.tsuruki.spring.view.page.IndexPage;
-import com.tsuruki.spring.view.page.RegisterPage;
+import com.tsuruki.spring.view.page.UpdatePage;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @TestPropertySource(locations = "classpath:test.properties")
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class RegisterViewTest {
+public class UpdateViewTest {
 
-	
-	private RegisterPage page;
+	private UpdatePage page;
 	
 	@BeforeClass
 	public static void setUp() {
@@ -34,23 +32,13 @@ public class RegisterViewTest {
 	
 	@Before
 	public void setUpTest() {
-		page = IndexPage.open().moveToRegister();
+		page = IndexPage.open().setBaseDate("20181201").calc().moveToUpdate(1);
 	}
 	
 	@Test
-	public void No1_新規登録画面から一覧画面へ戻れる事() {
+	public void No1_更新画面から一覧画面へ戻れる事() {
 		IndexPage actual = page.backToIndex();
 		
 		assertThat(actual.title()).isEqualTo("日付計算一覧");
-	}
-	
-	@Test
-	public void No2_新規登録画面で新規登録出来る事() {
-		IndexPage indexPage = page.setDateId("Y02").setDateName("前年")
-				.setCalcYear("-1").setCalcMonth("0").setCalcDay("0").registData();
-		IndexPage actual = indexPage.setBaseDate("20181201").calc();
-		
-		actual.result().shouldBe(visible);
-		assertThat(actual.resultCount()).isEqualTo(3);
 	}
 }

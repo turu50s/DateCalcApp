@@ -37,7 +37,7 @@
 						<td><a th:id="${stat.count} + '_updateButton'" class="btn btn-primary" th:href="@{edit/{dateId}(dateId=*{id})}">更新</a></td>
 						<td>
 							<form action="#" th:action="@{/{dateId}(dateId=*{id})}" method="post">
-								<button name="delete" class="btn btn-danger">削除</button>
+								<button th:id="${stat.count} + '_deleteButton'" name="delete" class="btn btn-danger">削除</button>
 							</form>
 						</td>
 					</tr>

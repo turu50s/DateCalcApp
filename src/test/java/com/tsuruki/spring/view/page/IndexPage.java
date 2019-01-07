@@ -57,4 +57,9 @@ public class IndexPage {
 		$(By.id(lineNo + "_" + "updateButton")).click();
 		return page(UpdatePage.class);
 	}
+	
+	public IndexPage deleteExecute(int lineNo) {
+		$(By.id(lineNo + "_" + "deleteButton")).click();
+		return page(IndexPage.class);
+	}
 }

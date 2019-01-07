@@ -63,4 +63,14 @@ public class IndexViewTest {
 		
 		assertThat(actual.title()).isEqualTo("計算式更新");
 	}
+	
+	@Test
+	public void No4_一覧画面から削除実行できる事() {
+		page.setBaseDate("20181201").calc();
+		
+		page.deleteExecute(1);
+		
+		IndexPage actual = page.setBaseDate("20181201").calc();
+		assertThat(actual.resultCount()).isEqualTo(1);
+	}
 }
