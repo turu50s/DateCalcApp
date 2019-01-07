@@ -8,18 +8,23 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+//import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.tsuruki.spring.DateCalc;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
+@AutoConfigureTestDatabase(replace=Replace.NONE)
+@TestPropertySource(locations = "classpath:test.properties")
 public class DateCalcRepositoryTest {
 	
-	@Autowired
-	private TestEntityManager testEntityManager;
+//	@Autowired
+//	private TestEntityManager testEntityManager;
 
 	@Autowired
 	private DateCalcRepository sut;
@@ -27,8 +32,8 @@ public class DateCalcRepositoryTest {
 	@Before
 	public void init() throws Exception {
 		// テストデータ作成
-		testEntityManager.persist(createDateCalc("Y01", "翌年", 1, 0, 0));
-		testEntityManager.persist(createDateCalc("M01", "翌月", 0, 1, 0));
+//		testEntityManager.persist(createDateCalc("Y01", "翌年", 1, 0, 0));
+//		testEntityManager.persist(createDateCalc("M01", "翌月", 0, 1, 0));
 	}
 	
 	@Test

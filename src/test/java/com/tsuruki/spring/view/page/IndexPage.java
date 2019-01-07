@@ -41,6 +41,20 @@ public class IndexPage {
 	}
 	
 	public SelenideElement result() {
-		return $(By.cssSelector("table tbody .text-center"));
+		return $(By.cssSelector("table tbody tr"));
+	}
+	
+	public int resultCount() {
+		return $(By.cssSelector("table tbody")).findElements(By.tagName("tr")).size();
+	}
+	
+	public RegisterPage moveToRegister() {
+		registerButton.click();
+		return page(RegisterPage.class);
+	}
+	
+	public UpdatePage moveToUpdate(int lineNo) {
+		$(By.id(lineNo + "_" + "updateButton")).click();
+		return page(UpdatePage.class);
 	}
 }
