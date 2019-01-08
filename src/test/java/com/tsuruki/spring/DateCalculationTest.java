@@ -69,7 +69,7 @@ public class DateCalculationTest {
 
 	@Test
 	public void 新規登録ページで登録処理を行うとサービスで処理されて一覧画面に遷移される事() throws Exception {
-		sut.perform(post("/register").param("dateId", "Y01"))
+		sut.perform(post("/register").param("dateId", "D02").param("dateName", "翌日"))
 			.andExpect(status().is(302))
 			.andExpect(view().name("redirect:/"));
 
@@ -87,7 +87,7 @@ public class DateCalculationTest {
 
 	@Test
 	public void 更新ページで更新処理を行うとサービスで処理されて一覧画面に遷移される事() throws Exception {
-		sut.perform(post("/edit").param("dateId", "Y01"))
+		sut.perform(post("/edit").param("dateId", "Y01").param("dateName", "翌年"))
 			.andExpect(status().is(302))
 			.andExpect(view().name("redirect:/"));
 

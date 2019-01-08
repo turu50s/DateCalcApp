@@ -2,6 +2,7 @@ package com.tsuruki.spring;
 
 
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,7 +37,7 @@ public class DateCalculation {
 			List<DateCalc> list = service.search();
 			mav.addObject("dateResult", service.convert(baseDate, list));
 		} catch (Exception e) {
-			mav.addObject("msg", "入力項目に間違いがあります。");
+			mav.addObject("msg", "入力項目に間違いがあります");
 		}
 		return mav;
 	}
@@ -56,9 +57,14 @@ public class DateCalculation {
 		ModelAndView response = null;
 		
 		if (!errors.hasErrors()) {			
-			datecalc.setDateId(dateid);
-			service.save(datecalc);
-			response =  new ModelAndView("redirect:/");
+			if (Objects.isNull(service.find(dateid))) {
+				datecalc.setDateId(dateid);
+				service.save(datecalc);				
+				response =  new ModelAndView("redirect:/");
+			} else {
+				mav.addObject("msg", "日付IDが重複しています");
+				response = mav;
+			}
 		} else {
 			mav.setViewName("register");
 			response = mav;
