@@ -12,6 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.TestPropertySource;
@@ -24,6 +25,7 @@ import com.tsuruki.spring.services.DateCalcService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@AutoConfigureMockMvc
 @TestPropertySource(locations = "classpath:test.properties")
 public class DateCalculationTest {
 	private MockMvc sut;
@@ -93,6 +95,7 @@ public class DateCalculationTest {
 
 		verify(service, times(1)).save(any());
 	}
+	
 	@Test
 	public void 一覧ページで削除処理を行うとサービスで処理されて同一画面に遷移される事() throws Exception {
 		sut.perform(post("/{dateId}", "Y01"))
