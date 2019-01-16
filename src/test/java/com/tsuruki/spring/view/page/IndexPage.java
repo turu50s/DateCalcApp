@@ -11,7 +11,7 @@ import com.codeborne.selenide.SelenideElement;
 
 public class IndexPage {
 	
-	private static final String URL = "http://localhost:8080/";
+	private static final String URL = "http://localhost:8090/";
 	
 	@FindBy(id = "base")
 	private SelenideElement base;
