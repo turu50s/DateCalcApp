@@ -26,7 +26,7 @@ import com.tsuruki.spring.services.DateCalcService;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-//@TestPropertySource(locations = "classpath:test.properties")
+@TestPropertySource(locations = "classpath:test.properties")
 public class DateCalculationTest {
 	private MockMvc sut;
 	
