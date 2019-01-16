@@ -8,7 +8,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@TestPropertySource(locations = "classpath:test.properties")
 public class DateCalcAppApplicationTests {
 
 	@Test
