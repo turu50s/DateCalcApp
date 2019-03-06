@@ -64,9 +64,9 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <datasource.url>jdbc:mysql://localhost:3306/date_calc</datasource.url>
-                <datasource.username>root</datasource.username>
-                <datasource.password>root</datasource.password>
+                <jdbc.url>jdbc:mysql://localhost:3306/date_calc</jdbc.url>
+                <jdbc.username>root</jdbc.username>
+                <jdbc.password>root</jdbc.password>
             </properties>
         </profile>
         <profile>
@@ -75,9 +75,9 @@
                 <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
-                <datasource.url>jdbc:mysql://java-study.ceyodj5i65ko.ap-northeast-1.rds.amazonaws.com:3306/date_calc</datasource.url>
-                <datasource.username>root</datasource.username>
-                <datasource.password>sigeru0216</datasource.password>
+                <jdbc.url>jdbc:mysql://java-study.ceyodj5i65ko.ap-northeast-1.rds.amazonaws.com:3306/date_calc</jdbc.url>
+                <jdbc.username>root</jdbc.username>
+                <jdbc.password>sigeru0216</jdbc.password>
             </properties>
         </profile>
     </profiles>
