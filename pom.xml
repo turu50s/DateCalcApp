@@ -64,7 +64,7 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <env.name></env.name>
+                <envName></envName>
             </properties>
 		</profile>
 		<profile>
