@@ -73,7 +73,7 @@
                 <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
-                <env.name>release</env.name>
+                <envName>release</envName>
             </properties>
 		</profile>
 	</profiles>
