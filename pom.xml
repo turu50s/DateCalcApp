@@ -57,7 +57,7 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	<profiles>
+	<!-- <profiles>
         <profile>
             <id>local</id>
             <build>
@@ -78,7 +78,7 @@
                 </resources>
             </build>
         </profile>
-    </profiles>
+    </profiles> -->
     <build>
 		<plugins>
 			<plugin>
