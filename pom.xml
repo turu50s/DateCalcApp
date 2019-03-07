@@ -57,7 +57,26 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
+	<profiles>
+		<profile>
+			<id>local</id>
+			<activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <env.name></env.name>
+            </properties>
+		</profile>
+		<profile>
+			<id>release</id>
+			<activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <env.name>release</env.name>
+            </properties>
+		</profile>
+	</profiles>
     <build>
         <resources>
             <resource>
