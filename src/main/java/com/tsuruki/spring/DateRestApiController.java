@@ -18,11 +18,26 @@ public class DateRestApiController {
 	@Autowired
 	private DateCalcService service;
 	
+	/**
+	 * 
+	 * @param baseDate
+	 * @return DateResult
+	 */
+	@GetMapping(value="/id/{dateId}")
+	public DateCalc getDateId(@PathVariable("dateId")String dateId) {
+		DateCalc list = service.find(dateId);
+		return list;
+	}
+
+	/**
+	 * 
+	 * @param dateId
+	 * @return DateResult
+	 */
 	@GetMapping(value="{base}")
 	public List<DateResult> dateCalcOutput(@PathVariable("base")String baseDate) {
 		List<DateCalc> list = service.search();
 		List<DateResult> result = service.convert(baseDate, list);
 		return result;
 	}
-	
 }
