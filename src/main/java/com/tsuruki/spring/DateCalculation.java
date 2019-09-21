@@ -19,7 +19,7 @@ import com.tsuruki.spring.services.DateCalcService;
 
 @Controller
 public class DateCalculation {
-	// 文言!!!
+	
 	@Autowired
 	private DateCalcService service;
 	
